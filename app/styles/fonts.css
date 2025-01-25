@@ -1,0 +1,169 @@
+@font-face {
+  font-family: 'Playfair Display', serif;
+  src: url('/public/fonts/playfait-display/PlayfairDisplay-VariableFont_wght.ttf');
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Playfair Display', serif;
+  src: url('/public/fonts/playfait-display/PlayfairDisplay-VariableFont_wght.ttf');
+
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Playfair Display', serif;
+  src: url('/public/fonts/playfait-display/PlayfairDisplay-VariableFont_wght.ttf');
+
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Playfair Display', serif;
+  src: url('/public/fonts/playfait-display/PlayfairDisplay-VariableFont_wght.ttf');
+
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Playfair Display', serif;
+  src: url('/public/fonts/playfait-display/PlayfairDisplay-VariableFont_wght.ttf');
+
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Playfair Display', serif;
+  src: url('/public/fonts/playfait-display/PlayfairDisplay-VariableFont_wght.ttf');
+
+  font-optical-sizing: auto;
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Playfair Display', serif;
+  src: url('/public/fonts/playfait-display/PlayfairDisplay-Italic-VariableFont_wght.ttf');
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Playfair Display', serif;
+  src: url('/public/fonts/playfait-display/PlayfairDisplay-Italic-VariableFont_wght.ttf');
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Playfair Display', serif;
+  src: url('/public/fonts/playfait-display/PlayfairDisplay-Italic-VariableFont_wght.ttf');
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Playfair Display', serif;
+  src: url('/public/fonts/playfait-display/PlayfairDisplay-Italic-VariableFont_wght.ttf');
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* Source Sans 3*/
+
+@font-face {
+  font-family: 'Source Sans 3', serif;
+  src: url('/public/fonts/source-sans-3/SourceSans3-VariableFont_wght.ttf');
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Source Sans 3', serif;
+  src: url('/public/fonts/source-sans-3/SourceSans3-VariableFont_wght.ttf');
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Source Sans 3', serif;
+  src: url('/public/fonts/source-sans-3/SourceSans3-VariableFont_wght.ttf');
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Source Sans 3', serif;
+  src: url('/public/fonts/source-sans-3/SourceSans3-VariableFont_wght.ttf');
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Source Sans 3', serif;
+  src: url('/public/fonts/source-sans-3/SourceSans3-VariableFont_wght.ttf');
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Source Sans 3', serif;
+  src: url('/public/fonts/source-sans-3/SourceSans3-VariableFont_wght.ttf');
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Source Sans 3', serif;
+  src: url('/public/fonts/source-sans-3/SourceSans3-VariableFont_wght.ttf');
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+}
+/* Italic */
+
+@font-face {
+  font-family: 'Source Sans 3', serif;
+  src: url('/public/fonts/source-sans-3/SourceSans3-Italic-VariableFont_wght.ttf');
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Source Sans 3', serif;
+  src: url('/public/fonts/source-sans-3/SourceSans3-Italic-VariableFont_wght.ttf');
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Source Sans 3', serif;
+  src: url('/public/fonts/source-sans-3/SourceSans3-Italic-VariableFont_wght.ttf');
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Source Sans 3', serif;
+  src: url('/public/fonts/source-sans-3/SourceSans3-Italic-VariableFont_wght.ttf');
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Source Sans 3', serif;
+  src: url('/public/fonts/source-sans-3/SourceSans3-Italic-VariableFont_wght.ttf');
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: italic;
+}
