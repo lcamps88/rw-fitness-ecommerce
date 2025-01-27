@@ -1,11 +1,13 @@
 import {Link} from '@remix-run/react';
-import {CartForm, Image, type OptimisticCartLine} from '@shopify/hydrogen';
-import type {CartLineUpdateInput} from '@shopify/hydrogen/storefront-api-types';
+import {Image, type OptimisticCartLine} from '@shopify/hydrogen';
 import type {CartApiQueryFragment} from 'storefrontapi.generated';
 import type {CartLayout} from '~/components/cart/CartMain';
 import {useVariantUrl} from '~/lib/variants';
-import {useAside} from '../Aside';
-import {ProductPrice} from '../ProductPrice';
+import {useAside} from '~/components/Aside';
+import {ProductPrice} from '~/components/ProductPrice';
+import CartLineQuantityAdjustor from '~/components/cart/CartLineQuantityAdjustor';
+import CartLineRemoveButton from '~/components/cart/CartLineRemoveButton';
+import CartLineUpdateButton from '~/components/cart/CartLineUpdateButton';
 
 type CartLine = OptimisticCartLine<CartApiQueryFragment>;
 
@@ -26,45 +28,52 @@ export function CartLineItem({
   const {close} = useAside();
 
   return (
-    <li key={id} className="cart-line">
-      {image && (
-        <Image
-          alt={title}
-          aspectRatio="1/1"
-          data={image}
-          height={100}
-          loading="lazy"
-          width={100}
-        />
-      )}
-
-      <div>
+    <div className="flex gap-4 py-6 border-b border-gray-100">
+      {/* Product Image */}
+      <div className="relative w-24 h-24 bg-gray-50 rounded-lg overflow-hidden">
+        {image && (
+          <Image
+            alt={title}
+            aspectRatio="1/1"
+            data={image}
+            className="object-cover w-full h-full"
+            loading="lazy"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+        )}
+      </div>
+      {/* Product Details */}
+      <div className="flex-1 min-w-0">
         <Link
           prefetch="intent"
           to={lineItemUrl}
-          onClick={() => {
-            if (layout === 'aside') {
-              close();
-            }
-          }}
+          onClick={close}
+          className="block"
         >
-          <p>
-            <strong>{product.title}</strong>
-          </p>
+          <h3 className="font-playfair text-base text-navy truncate mb-1">
+            {product.title}
+          </h3>
         </Link>
-        <ProductPrice price={line?.cost?.totalAmount} />
-        <ul>
+        {/* Product Options */}
+        <div className="mt-1 space-y-1">
           {selectedOptions.map((option) => (
-            <li key={option.name}>
-              <small>
-                {option.name}: {option.value}
-              </small>
-            </li>
+            <p
+              key={`${product.id}-${option.name}`}
+              className="font-source text-sm text-gray-500"
+            >
+              {option.name}: {option.value}
+            </p>
           ))}
-        </ul>
-        <CartLineQuantity line={line} />
+        </div>
+        {/* Price & Quantity Control */}
+        <div className="mt-4 flex items-center justify-between">
+          <CartLineQuantityAdjustor line={line} />
+          <div className="font-source font-medium">
+            <ProductPrice price={line?.cost?.totalAmount} />
+          </div>
+        </div>
       </div>
-    </li>
+    </div>
   );
 }
 
@@ -104,50 +113,7 @@ function CartLineQuantity({line}: {line: CartLine}) {
         </button>
       </CartLineUpdateButton>
       &nbsp;
-      <CartLineRemoveButton lineIds={[lineId]} disabled={!!isOptimistic} />
+      <CartLineRemoveButton lineIds={[lineId]} disable={!isOptimistic} />
     </div>
-  );
-}
-
-/**
- * A button that removes a line item from the cart. It is disabled
- * when the line item is new, and the server hasn't yet responded
- * that it was successfully added to the cart.
- */
-function CartLineRemoveButton({
-  lineIds,
-  disabled,
-}: {
-  lineIds: string[];
-  disabled: boolean;
-}) {
-  return (
-    <CartForm
-      route="/cart"
-      action={CartForm.ACTIONS.LinesRemove}
-      inputs={{lineIds}}
-    >
-      <button disabled={disabled} type="submit">
-        Remove
-      </button>
-    </CartForm>
-  );
-}
-
-function CartLineUpdateButton({
-  children,
-  lines,
-}: {
-  children: React.ReactNode;
-  lines: CartLineUpdateInput[];
-}) {
-  return (
-    <CartForm
-      route="/cart"
-      action={CartForm.ACTIONS.LinesUpdate}
-      inputs={{lines}}
-    >
-      {children}
-    </CartForm>
   );
 }
