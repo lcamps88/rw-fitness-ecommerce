@@ -4,12 +4,13 @@ import type {FooterQuery, HeaderQuery} from 'storefrontapi.generated';
 import {
   Facebook,
   Instagram,
-  InstagramIcon,
   Linkedin,
   Mail,
   MapIcon,
   Phone,
 } from 'lucide-react';
+import {useAside} from './Aside';
+import {Image} from '@shopify/hydrogen';
 
 interface FooterProps {
   footer: Promise<FooterQuery | null>;
@@ -56,27 +57,37 @@ export function Footer({
             </div>
             {/* Main Footer Content */}
             <div className="container mx-auto px-4 py-12">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 justify-start md:justify-center md:items-center">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
                 {/* Brand Columns */}
                 <div className="space-y-6">
-                  <h3 className="font-playfair text-2xl">RW Fitness</h3>
+                  <div className="p-1 bg-gold rounded-full w-[100px] h-[100px]  flex items-center justify-center">
+                    <Image
+                      alt="home 2"
+                      className="w-full object-cover rounded-full h-full"
+                      data={{
+                        url: '/images/Logo.png',
+                      }}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      loading="lazy"
+                    />
+                    <h3 className="font-playfair text-2xl ml-2">RW Fitness</h3>
+                  </div>
+                  {/* <h3 className="font-playfair text-2xl">RW Fitness</h3> */}
                   <p className="font-source text-sm text-gray-300 leading-relaxed">
                     {' '}
                     Modern Designed for distintion
                   </p>
                   <div className="flex space-x-4">
                     <a
-                      href="#"
+                      href="facebook.com"
                       className="text-white/80 hover:text-gold transition-colors duration-300"
                     >
                       <Instagram className="w-5 h-5" />
                     </a>
-                    <a href="#">
-                      {' '}
+                    <a href="Instagram.com">
                       <Facebook className="w-5 h-5" />
                     </a>
-                    <a href="#">
-                      {' '}
+                    <a href="Linkedin.com">
                       <Linkedin className="w-5 h-5" />
                     </a>
                   </div>
@@ -134,6 +145,11 @@ export function Footer({
                 {/* Policies Columns */}
                 <div className="space-y-6">
                   <h4 className="font-playfair text-xl">Polices</h4>
+                  <FooterMenu
+                    menu={footer?.menu}
+                    primaryDomainUrl={header.shop.primaryDomain.url}
+                    publicStoreDomain={publicStoreDomain}
+                  />
                 </div>
               </div>
             </div>
@@ -151,14 +167,6 @@ export function Footer({
                 </div>
               </div>
             </div>
-
-            {/* {footer?.menu && header.shop.primaryDomain?.url && (
-              <FooterMenu
-                menu={footer.menu}
-                primaryDomainUrl={header.shop.primaryDomain.url}
-                publicStoreDomain={publicStoreDomain}
-              />
-            )} */}
           </footer>
         )}
       </Await>
@@ -175,28 +183,31 @@ function FooterMenu({
   primaryDomainUrl: FooterProps['header']['shop']['primaryDomain']['url'];
   publicStoreDomain: string;
 }) {
+  const {close} = useAside();
   return (
-    <nav className="footer-menu" role="navigation">
-      {(menu || FALLBACK_FOOTER_MENU).items.map((item) => {
-        if (!item.url) return null;
-        // if the url is internal, we strip the domain
+    <nav className="space-y-3 font-source text-sm" role="navigation">
+      {menu?.items.map((item) => {
+        if (!item.url) {
+          return null;
+        }
         const url =
           item.url.includes('myshopify.com') ||
-          item.url.includes(publicStoreDomain) ||
-          item.url.includes(primaryDomainUrl)
-            ? new URL(item.url).pathname
-            : item.url;
-        const isExternal = !url.startsWith('/');
-        return isExternal ? (
-          <a href={url} key={item.id} rel="noopener noreferrer" target="_blank">
-            {item.title}
-          </a>
-        ) : (
+          item.url.includes(publicStoreDomain) || //rw.com/collections
+          item.url.includes(primaryDomainUrl) //store.rw.com/collections
+            ? new URL(item.url).pathname // -->/collections
+            : item.url; //google.com
+
+        return (
           <NavLink
+            className={({isActive}) =>
+              `block text-gold hover:text-goldDrark transition-colors duration-300 ${
+                isActive ? 'text-gold' : ''
+              }`
+            }
             end
             key={item.id}
+            onClick={close}
             prefetch="intent"
-            style={activeLinkStyle}
             to={url}
           >
             {item.title}
@@ -204,6 +215,34 @@ function FooterMenu({
         );
       })}
     </nav>
+    // <nav className="footer-menu" role="navigation">
+    //   {(menu || FALLBACK_FOOTER_MENU).items.map((item) => {
+    //     if (!item.url) return null;
+    //     // if the url is internal, we strip the domain
+    //     const url =
+    //       item.url.includes('myshopify.com') ||
+    //       item.url.includes(publicStoreDomain) ||
+    //       item.url.includes(primaryDomainUrl)
+    //         ? new URL(item.url).pathname
+    //         : item.url;
+    //     const isExternal = !url.startsWith('/');
+    //     return isExternal ? (
+    //       <a href={url} key={item.id} rel="noopener noreferrer" target="_blank">
+    //         {item.title}
+    //       </a>
+    //     ) : (
+    //       <NavLink
+    //         end
+    //         key={item.id}
+    //         prefetch="intent"
+    //         style={activeLinkStyle}
+    //         to={url}
+    //       >
+    //         {item.title}
+    //       </NavLink>
+    //     );
+    //   })}
+    // </nav>
   );
 }
 

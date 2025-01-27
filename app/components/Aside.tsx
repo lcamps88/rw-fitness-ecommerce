@@ -111,7 +111,7 @@ export function Aside({
           <h3 className="font-playfair text-xl tex-navy">{heading}</h3>
           <button
             onClick={close}
-            className="p-2 -mr-2 text-gray-400 hover: text-gray-500 transition-colors duration-300"
+            className="p-2 -mr-2 text-gray-400 hover:text-gray-500 transition-colors duration-300"
           >
             <X className="w-5 h-5" />
           </button>

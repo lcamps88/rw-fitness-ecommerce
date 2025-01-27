@@ -9,7 +9,7 @@ import {
   useSelectedOptionInUrlParam,
 } from '@shopify/hydrogen';
 import {ProductPrice} from '~/components/ProductPrice';
-import {ProductImage} from '~/components/ProductImage';
+import ProductImage from '~/components/ProductImage';
 import {ProductForm} from '~/components/ProductForm';
 
 export const meta: MetaFunction<typeof loader> = ({data}) => {
@@ -98,27 +98,24 @@ export default function Product() {
   const {title, descriptionHtml} = product;
 
   return (
-    <div className="product">
-      <ProductImage image={selectedVariant?.image} />
-      <div className="product-main">
-        <h1>{title}</h1>
-        <ProductPrice
-          price={selectedVariant?.price}
-          compareAtPrice={selectedVariant?.compareAtPrice}
-        />
-        <br />
-        <ProductForm
-          productOptions={productOptions}
-          selectedVariant={selectedVariant}
-        />
-        <br />
-        <br />
-        <p>
-          <strong>Description</strong>
-        </p>
-        <br />
-        <div dangerouslySetInnerHTML={{__html: descriptionHtml}} />
-        <br />
+    <div className="pt-48  pb-20 md:pt-52">
+      <div className="max-w-7xl mx-auto px-4 md:px-8">
+        <div className="grid grid-col-1 lg:grid-cols-2 gap-12 lg:gap-16">
+          {/* Left Image */}
+          <div className="space-y-8">
+            <ProductImage
+              images={product.images.nodes.map((node) => ({
+                id: node.id,
+                url: node.url,
+                alert: node.altText,
+                width: node.width,
+                height: node.height,
+              }))}
+              selectedVariantImage={selectedVariant.image}
+            />
+          </div>
+          {/* Right side-content */}
+        </div>
       </div>
       <Analytics.ProductView
         data={{
@@ -201,6 +198,15 @@ const PRODUCT_FRAGMENT = `#graphql
             }
           }
         }
+      }
+    }
+    images(first:10){
+      nodes{
+        id
+        altText
+        url
+        width
+        height
       }
     }
     selectedOrFirstAvailableVariant(selectedOptions: $selectedOptions, ignoreUnknownOptions: true, caseInsensitiveMatch: true) {

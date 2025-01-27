@@ -1,5 +1,7 @@
 import {Suspense, useState, useEffect} from 'react';
 import {Await, NavLink, useAsyncValue} from '@remix-run/react';
+import {Image} from '@shopify/hydrogen';
+
 import {
   type CartViewPayload,
   useAnalytics,
@@ -109,7 +111,19 @@ export function Header({
                 isScrolled ? 'text-xl sm:text-2xl' : 'text-2xl sm:text-[28px]'
               }`}
             >
-              <h1 className="font-playfair font-medium">RW Fitness</h1>
+              <div className="p-1 bg-gold rounded-full w-[80px] h-[80px] flex items-center justify-center">
+                <Image
+                  alt="home 2"
+                  className="w-full object-cover rounded-full h-full"
+                  data={{
+                    url: '/images/Logo.png',
+                  }}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  loading="lazy"
+                />
+                <h1 className="font-playfair font-medium ml-2">RW Coffe</h1>
+              </div>
+              {/* <h1 className="font-playfair font-medium">RW Fitness</h1> */}
             </NavLink>
 
             {/* Desktop Navigation */}
