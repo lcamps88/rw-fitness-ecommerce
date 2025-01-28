@@ -140,6 +140,7 @@ export default function Product() {
               productOptions={productOptions}
               selectedVariant={selectedVariant}
               className="space-y-8"
+              product={product}
             />
           </div>
         </div>
@@ -245,6 +246,19 @@ const PRODUCT_FRAGMENT = `#graphql
     seo {
       description
       title
+    }
+    #Metafields
+    careInstructions: metafield(namespace: "custom", key: "care_instructions"){
+      value
+    }
+    materials: metafield(namespace: "custom", key: "materials"){
+      value
+    }
+    construction: metafield(namespace: "custom", key: "construction"){
+      value
+    }
+    sizingNotes: metafield(namespace: "custom", key: "sizing_notes"){
+      value
     }
   }
   ${PRODUCT_VARIANT_FRAGMENT}
