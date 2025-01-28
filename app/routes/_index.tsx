@@ -135,14 +135,14 @@ export default function Homepage() {
         </div>
       </section>
 
-      {/* Craftmanship Section */}
+      {/* Craftsmanship Section */}
 
       <section className="pb-20 px-4">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
               <Image
-                alt="home 2"
+                alt="Craftsmanship"
                 className="w-full h-[30rem] lg:h-[40rem] object-cover"
                 data={{
                   url: '/images/drew-williams.webp',

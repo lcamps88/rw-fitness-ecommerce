@@ -1,5 +1,5 @@
 import {Link, useNavigate} from '@remix-run/react';
-import {type MappedProductOptions} from '@shopify/hydrogen';
+import {RichText, type MappedProductOptions} from '@shopify/hydrogen';
 import type {
   Maybe,
   ProductOptionValueSwatch,
@@ -7,18 +7,22 @@ import type {
 import {AddToCartButton} from './AddToCartButton';
 import {useAside} from './Aside';
 import type {ProductFragment} from 'storefrontapi.generated';
+import {CircleArrowUp} from 'lucide-react';
 
 export function ProductForm({
   productOptions,
   selectedVariant,
   className,
+  product,
 }: {
   productOptions: MappedProductOptions[];
   selectedVariant: ProductFragment['selectedOrFirstAvailableVariant'];
   className: string;
+  product: ProductFragment;
 }) {
   const navigate = useNavigate();
   const {open} = useAside();
+
   return (
     <div className={`flex flex-col ${className}`}>
       <div className="space-y-8">
@@ -130,6 +134,68 @@ export function ProductForm({
           </AddToCartButton>
         </div>
         {/* Product Details Accordion */}
+
+        <div className="mt-12 border-t border-navy-10">
+          <div className="grid grid-cols-1 divide-y divide-navy/10">
+            {/* Material Section */}
+            {product.materials?.value && (
+              <details className="group py-6">
+                <summary className="flex items-center justify-between cursor-pointer list-none">
+                  <h3 className="font-playfair text-2xl text-navy">
+                    Materials & Construction
+                  </h3>
+                  <span>
+                    <CircleArrowUp className="relative flex-shrink-0 ml-4 w-6 h-6 transform transition-transform duration-300 group-open:rotate-180" />
+                  </span>
+                </summary>
+                <div className="pt-4 prose font-source text-navy/80">
+                  <RichText data={product.materials?.value} />
+                  {product.construction?.value && (
+                    <div className="mt-4">
+                      <h4 className="font-playfair text-xl text-navy/80">
+                        Construction
+                      </h4>
+                      <p>{product.construction.value}</p>
+                    </div>
+                  )}
+                </div>
+              </details>
+            )}
+            {/* Size & Fit Section */}
+            {product.sizingNotes?.value && (
+              <details className="group py-6">
+                <summary className="flex items-center justify-between cursor-pointer list-none">
+                  <h3 className="font-playfair text-2xl text-navy">
+                    Size & Fit{' '}
+                  </h3>
+                  <span>
+                    <CircleArrowUp className="relative flex-shrink-0 ml-4 w-6 h-6 transform transition-transform duration-300 group-open:rotate-180" />
+                  </span>
+                </summary>
+                <div className="pt-4 prose font-source text-navy/80">
+                  <p>{product.sizingNotes.value}</p>
+                </div>
+              </details>
+            )}
+
+            {/* Cate Instruction */}
+            {product.careInstructions?.value && (
+              <details className="group py-6">
+                <summary className="flex items-center justify-between cursor-pointer list-none">
+                  <h3 className="font-playfair text-2xl text-navy">
+                    Care Instructions
+                  </h3>
+                  <span>
+                    <CircleArrowUp className="relative flex-shrink-0 ml-4 w-6 h-6 transform transition-transform duration-300 group-open:rotate-180" />
+                  </span>
+                </summary>
+                <div className="pt-4 prose font-source text-navy/80">
+                  <RichText data={product.careInstructions.value} />
+                </div>
+              </details>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
