@@ -1,5 +1,5 @@
 import {defer, type LoaderFunctionArgs} from '@shopify/remix-oxygen';
-import {useLoaderData, type MetaFunction} from '@remix-run/react';
+import {Await, useLoaderData, type MetaFunction} from '@remix-run/react';
 import {
   getSelectedProductOptions,
   Analytics,
@@ -11,10 +11,11 @@ import {
 import {ProductPrice} from '~/components/ProductPrice';
 import ProductImage from '~/components/ProductImage';
 import {ProductForm} from '~/components/ProductForm';
+import {Suspense} from 'react';
 
 export const meta: MetaFunction<typeof loader> = ({data}) => {
   return [
-    {title: `Hydrogen | ${data?.product.title ?? ''}`},
+    {title: `PSL Mug | ${data?.product.title ?? ''}`},
     {
       rel: 'canonical',
       href: `/products/${data?.product.handle}`,
@@ -98,7 +99,7 @@ export default function Product() {
   const {title, descriptionHtml} = product;
 
   return (
-    <div className="pt-48  pb-20 md:pt-52">
+    <div className="pt-48 pb-20 md:pt-52">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="grid grid-col-1 lg:grid-cols-2 gap-12 lg:gap-16">
           {/* Left Image */}
@@ -115,6 +116,32 @@ export default function Product() {
             />
           </div>
           {/* Right side-content */}
+          <div className="space-y-10">
+            {/* Product Totle & Price */}
+            <div className="space-y-4 border-b border-navy/10 pb-6">
+              <h1 className="font-playfair text-3xl md:text-4xl text-navy">
+                {product.title}
+              </h1>
+              <ProductPrice
+                price={selectedVariant?.price}
+                compareAtPrice={selectedVariant?.compareAtPrice}
+                className="font-source text-xl text-navy"
+              />
+            </div>
+            {/* Product Description */}
+            <div className="font-source text-navy/80 max-w-none">
+              <div
+                dangerouslySetInnerHTML={{__html: product.descriptionHtml}}
+              ></div>
+            </div>
+
+            {/* Product Form */}
+            <ProductForm
+              productOptions={productOptions}
+              selectedVariant={selectedVariant}
+              className="space-y-8"
+            />
+          </div>
         </div>
       </div>
       <Analytics.ProductView

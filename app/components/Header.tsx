@@ -121,7 +121,7 @@ export function Header({
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   loading="lazy"
                 />
-                <h1 className="font-playfair font-medium ml-2">RW Coffe</h1>
+                <h1 className="font-playfair font-medium ml-2">PSL Mug</h1>
               </div>
               {/* <h1 className="font-playfair font-medium">RW Fitness</h1> */}
             </NavLink>
