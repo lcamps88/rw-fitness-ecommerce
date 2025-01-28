@@ -70,9 +70,8 @@ export function Footer({
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       loading="lazy"
                     />
-                    <h3 className="font-playfair text-2xl ml-2">RW Fitness</h3>
+                    <h3 className="font-playfair text-2xl ml-2">PSL Mug</h3>
                   </div>
-                  {/* <h3 className="font-playfair text-2xl">RW Fitness</h3> */}
                   <p className="font-source text-sm text-gray-300 leading-relaxed">
                     {' '}
                     Modern Designed for distintion

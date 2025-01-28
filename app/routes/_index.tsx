@@ -10,7 +10,7 @@ import {ArrowRight, Star} from 'lucide-react';
 import ProductItem from '~/components/ProductItem';
 
 export const meta: MetaFunction = () => {
-  return [{title: 'Hydrogen | Home'}];
+  return [{title: 'PSL Mug | Home'}];
 };
 
 export async function loader(args: LoaderFunctionArgs) {
@@ -62,7 +62,7 @@ export default function Homepage() {
   return (
     <div className="home">
       {/* Hero Section */}
-      <section className="relative h-screen min-h-[600px] bg-navy">
+      <section className="relative h-screen min-h-[600px] bg-navy pt-48 pb-20">
         <Image
           className="absolute inset-0 w-full h-full object-cover opacity-60"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -77,7 +77,7 @@ export default function Homepage() {
         <div className="relative container mx-auto px-4 h-full flex items-center text-white">
           <div className="max-w-2xl">
             <h1 className="font-playfair text-4xl md:text-6xl mb-6">
-              Artisinal Footwear for the Modern Sophisticate
+              Crafted Mugs for the Everyday Connoisseur
             </h1>
             <p className="font-source text-lg text-gray-200 mb-8">
               Handcrafted excellence, designed for distinction
@@ -178,6 +178,7 @@ export default function Homepage() {
           <div className="flex justify-center mb-6">
             {Array.from({length: 5}).map((_, i) => (
               <Star
+                // eslint-disable-next-line react/no-array-index-key
                 key={`start-${i}`}
                 fill="#C3A343"
                 color="#C3A343"
@@ -198,67 +199,67 @@ export default function Homepage() {
   );
 }
 
-function FeaturedCollection({
-  collection,
-}: {
-  collection: FeaturedCollectionFragment;
-}) {
-  if (!collection) return null;
-  const image = collection?.image;
-  return (
-    <Link
-      className="featured-collection"
-      to={`/collections/${collection.handle}`}
-    >
-      {image && (
-        <div className="featured-collection-image">
-          <Image data={image} sizes="100vw" />
-        </div>
-      )}
-      <h1>{collection.title}</h1>
-    </Link>
-  );
-}
+// function FeaturedCollection({
+//   collection,
+// }: {
+//   collection: FeaturedCollectionFragment;
+// }) {
+//   if (!collection) return null;
+//   const image = collection?.image;
+//   return (
+//     <Link
+//       className="featured-collection"
+//       to={`/collections/${collection.handle}`}
+//     >
+//       {image && (
+//         <div className="featured-collection-image">
+//           <Image data={image} sizes="100vw" />
+//         </div>
+//       )}
+//       <h1>{collection.title}</h1>
+//     </Link>
+//   );
+// }
 
-function RecommendedProducts({
-  products,
-}: {
-  products: Promise<RecommendedProductsQuery | null>;
-}) {
-  return (
-    <div className="recommended-products">
-      <h2 className="text-navy">Recommended Products</h2>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Await resolve={products}>
-          {(response) => (
-            <div className="recommended-products-grid">
-              {response
-                ? response.products.nodes.map((product) => (
-                    <Link
-                      key={product.id}
-                      className="recommended-product"
-                      to={`/products/${product.handle}`}
-                    >
-                      <Image
-                        data={product.images.nodes[0]}
-                        aspectRatio="1/1"
-                        sizes="(min-width: 45em) 20vw, 50vw"
-                      />
-                      <h4>{product.title}</h4>
-                      <small>
-                        <Money data={product.priceRange.minVariantPrice} />
-                      </small>
-                    </Link>
-                  ))
-                : null}
-            </div>
-          )}
-        </Await>
-      </Suspense>
-      <br />
-    </div>
-  );
-}
+// function RecommendedProducts({
+//   products,
+// }: {
+//   products: Promise<RecommendedProductsQuery | null>;
+// }) {
+//   return (
+//     <div className="recommended-products">
+//       <h2 className="text-navy">Recommended Products</h2>
+//       <Suspense fallback={<div>Loading...</div>}>
+//         <Await resolve={products}>
+//           {(response) => (
+//             <div className="recommended-products-grid">
+//               {response
+//                 ? response.products.nodes.map((product) => (
+//                     <Link
+//                       key={product.id}
+//                       className="recommended-product"
+//                       to={`/products/${product.handle}`}
+//                     >
+//                       <Image
+//                         data={product.images.nodes[0]}
+//                         aspectRatio="1/1"
+//                         sizes="(min-width: 45em) 20vw, 50vw"
+//                       />
+//                       <h4>{product.title}</h4>
+//                       <small>
+//                         <Money data={product.priceRange.minVariantPrice} />
+//                       </small>
+//                     </Link>
+//                   ))
+//                 : null}
+//             </div>
+//           )}
+//         </Await>
+//       </Suspense>
+//       <br />
+//     </div>
+//   );
+// }
 
 const FEATURED_COLLECTION_QUERY = `#graphql
   fragment FeaturedCollection on Collection {
