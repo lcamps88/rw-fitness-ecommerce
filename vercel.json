@@ -1,6 +1,13 @@
 {
   "env": {
     "SESSION_SECRET": "foobar",
-    "PUBLIC_STORE_DOMAIN": "rw-fitness-ecommerce.myshopify.com"
+    "PUBLIC_STORE_DOMAIN": "rw-fitness-ecommerce.myshopify.com",
+    "PUBLIC_STOREFRONT_ID": "47548",
+
+    "PUBLIC_STOREFRONT_API_TOKEN": "17457232707dc91432db332528a923dc",
+    "PRIVATE_STOREFRONT_API_TOKEN": "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",
+
+    "PUBLIC_CUSTOMER_ACCOUNT_API_CLIENT_ID": "shp_aaf65efb-d867-4260-954c-b3882773a43d",
+    "PUBLIC_CUSTOMER_ACCOUNT_API_URL": "rw-fitness-ecommerce.myshopify.com"
   }
 }
