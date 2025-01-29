@@ -1,5 +1,6 @@
 {
-    "buildCommand": "npm run build",
-    "outputDirectory": "public",
-    "framework": "remix"
+  "env": {
+    "SESSION_SECRET": "foobar",
+    "PUBLIC_STORE_DOMAIN": "rw-fitness-ecommerce.myshopify.com"
   }
+}
