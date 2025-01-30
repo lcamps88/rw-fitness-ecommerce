@@ -1,28 +1,12 @@
 /** @type {import('@remix-run/dev').AppConfig} */
 module.exports = {
-  appDirectory: 'app',
-  ignoredRouteFiles: ['**/.*'],
-  watchPaths: ['./public', './.env'],
-  server: './server.ts',
-  /**
-   * The following settings are required to deploy Hydrogen apps to Oxygen:
-   */
-  publicPath: (process.env.HYDROGEN_ASSET_BASE_URL ?? '/') + 'build/',
-  assetsBuildDirectory: 'dist/client/build',
-  serverBuildPath: 'dist/worker/index.js',
-  serverMainFields: ['browser', 'module', 'main'],
-  serverConditions: ['worker', process.env.NODE_ENV],
-  serverDependenciesToBundle: 'all',
-  serverModuleFormat: 'esm',
-  serverPlatform: 'neutral',
-  serverMinify: process.env.NODE_ENV === 'production',
-  tailwind: true,
-  postcss: true,
+  serverModuleFormat: 'esm', // Usa ESM para compatibilidad con plataformas modernas
   future: {
-    v2_meta: true,
-    v2_headers: true,
-    v2_errorBoundary: true,
-    v2_routeConvention: true,
-    v2_normalizeFormMethod: true,
+    v2_routeConvention: true, // Habilita la convención de rutas v2
+    v2_errorBoundary: true, // Usa los nuevos boundaries de errores
+    v2_headers: true, // Mejora la gestión de headers en Remix
+    v2_dev: true, // Activa mejoras de desarrollo
   },
+  ignoredRouteFiles: ['**/.*'], // Ignora archivos ocultos
+  tailwind: true, // Habilita Tailwind si está en uso
 };
