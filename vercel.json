@@ -1,10 +1,12 @@
-// {
-//   "env": {
-//     "SESSION_SECRET": "foobar",
-//     "PUBLIC_STORE_DOMAIN": "rw-fitness-ecommerce.myshopify.com"
-//   }
-// }
 {
-  "buildCommand": "npm run build",
-  "outputDirectory": "build"
+  "build": {
+    "env": {
+      "SESSION_SECRET": "foobar",
+      "PUBLIC_STORE_DOMAIN": "rw-fitness-ecommerce.myshopify.com"
+    }
+  }
 }
+// {
+//   "buildCommand": "npm run build",
+//   "outputDirectory": "build"
+// }

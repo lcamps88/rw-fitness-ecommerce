@@ -5,7 +5,6 @@
   "version": "2024.10.4",
   "type": "module",
   "scripts": {
-    //"build": "shopify hydrogen build",
     "build": "vite build && remix build",
     "dev": "shopify hydrogen dev --codegen",
     "preview": "shopify hydrogen preview --build",
