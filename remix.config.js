@@ -8,7 +8,6 @@ module.exports = {
     v2_errorBoundary: true, // Usa los nuevos boundaries de errores
     v2_headers: true, // Mejora la gestión de headers en Remix
     v2_dev: true, // Activa mejoras de desarrollo
- 
   },
   ignoredRouteFiles: ['**/.*'], // Ignora archivos ocultos
   tailwind: true, // Habilita Tailwind si está en uso
