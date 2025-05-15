@@ -5,7 +5,7 @@
   "version": "2024.10.4",
   "type": "module",
   "scripts": {
-    "build": "vite build && remix build",
+    "build": "shopify hydrogen build",
     "dev": "shopify hydrogen dev --codegen",
     "preview": "shopify hydrogen preview --build",
     "lint": "eslint --no-error-on-unmatched-pattern --ext .js,.ts,.jsx,.tsx .",
